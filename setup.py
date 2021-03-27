@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='jbird',
-      version='0.0',
+      version='0.0.2',
       description='JSON NoSQL database',
       packages=['jbird'],
       author_email='notdepot@gmail.com',
