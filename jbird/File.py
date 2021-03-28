@@ -56,11 +56,3 @@ class File:
                 data = f.read(length)
                 f.seek(i + length)
                 f.write(data)
-
-    # shift data toward the begin
-    def pop(self, pos, length):
-        pass
-
-    # delete the file (but not the dir)
-    def unlink(self):
-        pass

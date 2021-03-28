@@ -14,15 +14,6 @@ class Binary(File):
     def __init__(self, path, file):
         super(Binary, self).__init__(path, file, True)
 
-    def __str__(self):
-        result = f'type: {type(self)}\npath: {self.path} \nfile: {self.file} \nis_bin: {self.is_bin} \nlength: {self.length}\n'
-        i = 0
-        while i < self.length + self.chunk_len:
-            chunk = self.read(i, self.chunk_len)
-            result += f'{i:0004}, {chunk}\n'
-            i = i + self.chunk_len
-        return result
-
     # get sha1 of the string
     def hash(self, txt: str) -> bytes:
         txt_bytes = str.encode(txt)
@@ -77,5 +68,48 @@ class Binary(File):
 
     # binary search of the hash
     def select(self, key):
-        pass
 
+        key_hash = self.hash(key)
+        key_pos = None
+
+        start_pos = 0
+        start_hash = self.read(0, self.hash_len)
+
+        end_pos = self.length - self.chunk_len if self.length > 0 else 0
+        end_hash = self.read(end_pos, self.hash_len)
+
+        if end_hash and key_hash == end_hash:
+            key_pos = end_pos
+
+        elif start_hash and key_hash == start_hash:
+            key_pos = 0
+
+        else:
+            middle_pos = self.get_middle(start_pos, end_pos)
+            middle_hash = self.read(middle_pos, self.hash_len)
+
+            while middle_pos != start_pos and middle_pos != end_pos:
+
+                if middle_hash == key_hash:
+                    key_pos = middle_pos
+                    break
+
+                if key_hash > middle_hash:
+                    start_pos = middle_pos
+                else:
+                    end_pos = middle_pos
+
+                middle_pos = self.get_middle(start_pos, end_pos)
+                middle_hash = self.read(middle_pos, self.hash_len)
+
+        if key_pos:
+            chunk = self.read(key_pos, self.chunk_len)
+            value_pos_bytes = chunk[self.hash_len:self.hash_len + self.pos_len]
+            value_length_bytes = chunk[self.hash_len + self.pos_len:self.chunk_len]
+
+            value_pos = int.from_bytes(value_pos_bytes, 'big')
+            value_length = int.from_bytes(value_length_bytes, 'big')
+
+            return value_pos, value_length
+
+        return None, None

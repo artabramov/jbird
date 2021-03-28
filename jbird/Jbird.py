@@ -17,11 +17,8 @@ class Jbird():
         self.value.write(self.value.length, value)
         self.key.insert(key, self.value.length, len(value))
 
+    # load the data
     def get(self, key):
-        pass
-
-    def unset(self, key):
-        pass
-
-    def clear(self):
-        pass
+        value_pos, value_length = self.key.select(key)
+        if value_pos != None and value_length != None:
+            return self.value.read(value_pos, value_length)
