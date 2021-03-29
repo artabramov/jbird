@@ -1,5 +1,5 @@
-from .Binary import Binary
-from .Text import Text
+from .Key import Key
+from .Value import Value
 
 
 class Jbird():
@@ -9,13 +9,13 @@ class Jbird():
 
     def __init__(self, path):
         self.path = path
-        self.key = Binary(self.path, self.bin_file)
-        self.value = Text(self.path, self.txt_file)
+        self.key = Key(self.path, self.bin_file)
+        self.value = Value(self.path, self.txt_file)
 
     # save the data
     def set(self, key, value):
-        self.value.write(self.value.length, value)
         self.key.insert(key, self.value.length, len(value))
+        self.value.write(self.value.length, value)
 
     # load the data
     def get(self, key):

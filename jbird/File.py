@@ -39,6 +39,8 @@ class File:
         with open(os.path.join(self.path, self.file), mode) as f:
             f.seek(pos)
             f.write(data)
+        self.length = self.len()
+
 
     # read data from the custom position
     def read(self, pos, length):
@@ -56,3 +58,4 @@ class File:
                 data = f.read(length)
                 f.seek(i + length)
                 f.write(data)
+        self.length = self.len()

@@ -1,3 +1,3 @@
 from .File import File
-from .Binary import Binary
-from .Text import Text
+from .Key import Key
+from .Value import Value
