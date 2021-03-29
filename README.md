@@ -6,19 +6,19 @@
 
 ### Установка
 
-pip install jbird
+<code>pip install jbird</code>
 
 ### Пример использования
 
 <code>
-from jbird.Jbird import *
-
-user = Jbird('./users/')
-cash = Jbird('./cash/')
-
-user.set('1', 'John Dow')
-cash.set('1', '100')
-
-name = user.get('1')
-pay = cash.get('1')
+from jbird.Jbird import *<br />
+<br />
+user = Jbird('./users/')<br />
+cash = Jbird('./cash/')<br />
+<br />
+user.set('1', 'John Dow')<br />
+cash.set('1', '100')<br />
+<br />
+name = user.get('1')<br />
+pay = cash.get('1')<br />
 </code>
