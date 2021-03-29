@@ -10,7 +10,6 @@
 
 ### Пример использования
 
-<code>
 from jbird.Jbird import *<br />
 <br />
 user = Jbird('./users/')<br />
@@ -21,4 +20,3 @@ cash.set('1', '100')<br />
 <br />
 name = user.get('1')<br />
 pay = cash.get('1')<br />
-</code>
