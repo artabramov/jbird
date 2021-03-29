@@ -8,8 +8,9 @@
 
 pip install jbird
 
-### Примеры использования
+### Пример использования
 
+<code>
 from jbird.Jbird import *
 
 user = Jbird('./users/')
@@ -20,3 +21,4 @@ cash.set('1', '100')
 
 name = user.get('1')
 pay = cash.get('1')
+</code>
