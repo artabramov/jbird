@@ -10,13 +10,13 @@
 
 ### Пример использования
 
-from jbird.Jbird import *<br />
+<code>from jbird.Jbird import *</code><br />
 <br />
-user = Jbird('./users/')<br />
-cash = Jbird('./cash/')<br />
+<code>user = Jbird('./users/')</code><br />
+<code>cash = Jbird('./cash/')</code><br />
 <br />
-user.set('1', 'John Dow')<br />
-cash.set('1', '100')<br />
+<code>user.set('1', 'John Dow')</code><br />
+<code>cash.set('1', '100')</code><br />
 <br />
-name = user.get('1')<br />
-pay = cash.get('1')<br />
+<code>name = user.get('1')</code><br />
+<code>pay = cash.get('1')</code><br />
